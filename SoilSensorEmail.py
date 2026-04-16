@@ -11,6 +11,13 @@ from_email_addr = "207319913@qq.com"
 from_email_pass = "btucoswgpburcaej"
 to_email_addr = "iotyouxiang@qq.com"
 
+#Set the LastValue variable. Will compare to Current Hour Value
+#lastValue = result.tm_hour + 8
+seconds = time.time()
+result =time.localtime(seconds)
+startTime = 8
+lastValue = startTime
+
 def detect_send(channel):
 	if GPIO.input(channel):
 		print("Water Detected!")
@@ -44,9 +51,16 @@ def send_dont_need_water():
 	server.send_message(msg)
 	print('Email sent dont need water')
 	server.quit()
-
-send_need_water()
-
-# infinite loop
-while True:
-        time.sleep(0)
+while(True):
+	result = time.localtime(seconds)
+	Current_Value = result.tm_hour +8
+	#Compare Time to send email
+	if (lastValue == Current_Value):
+    
+	else:
+		difference = Current_Value - lastValue
+		if(difference >4):
+			detect_send(channel)
+			lastValue = Current_Value
+		else:
+			
