@@ -12,14 +12,14 @@ from_email_pass = "btucoswgpburcaej"
 to_email_addr = "iotyouxiang@qq.com"
 
 def detect_send(channel):
-        if GPIO.input(channel):
-                print("Water Detected!")
+	if GPIO.input(channel):
+		print("Water Detected!")
 		send_dont_need_water()
-        else:
-                print("No water Detected!")
+	else:
+		print("No water Detected!")
 		send_need_water()
 
-def send_need_water()
+def send_need_water():
 	msg = EmailMessage()
 	msg.set_content("MASTER!!!IM THIRSTY!!!!")
 	msg['From'] = from_email_addr
@@ -32,19 +32,20 @@ def send_need_water()
 	print('Email sent need water')
 	server.quit()
 
-def send_dont_need_water()
-        msg = EmailMessage()
-        msg.set_content("Hey,im not thirsty at all.")
-        msg['From'] = from_email_addr
-        msg['To'] = to_email_addr
-        msg['Subject'] = 'Dont need water'
-        server = smtplib.SMTP('smtp.qq.com',587)
-        server.starttls()
-        server.login(from_email_addr,from_email_pass)
-        server.send_message(msg)
-        print('Email sent dont need water')
-        server.quit()
+def send_dont_need_water():
+	msg = EmailMessage()
+	msg.set_content("Hey,im not thirsty at all.")
+	msg['From'] = from_email_addr
+	msg['To'] = to_email_addr
+	msg['Subject'] = 'Dont need water'
+	server = smtplib.SMTP('smtp.qq.com',587)
+	server.starttls()
+	server.login(from_email_addr,from_email_pass)
+	server.send_message(msg)
+	print('Email sent dont need water')
+	server.quit()
 
+send_need_water()
 
 # infinite loop
 while True:
