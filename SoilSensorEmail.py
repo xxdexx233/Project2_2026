@@ -15,7 +15,7 @@ to_email_addr = "iotyouxiang@qq.com"
 #lastValue = result.tm_hour + 8
 seconds = time.time()
 result =time.localtime(seconds)
-startTime = 8
+startTime = 4
 lastValue = startTime
 
 def detect_send(channel):
@@ -59,6 +59,6 @@ while(True):
 	#Compare Time to send email
 	if(lastValue!=Current_Value):
 		difference= Current_Value-lastValue
-		if(difference >4):
+		if(difference >3):
 			detect_send(channel)
 			lastValue = Current_Value
