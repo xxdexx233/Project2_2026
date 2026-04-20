@@ -51,16 +51,14 @@ def send_dont_need_water():
 	server.send_message(msg)
 	print('Email sent dont need water')
 	server.quit()
+
 while(True):
 	result = time.localtime(seconds)
-	Current_Value = result.tm_hour +8
+	Current_Value = result.tm_hour
+	#print(str(Current_Value))
 	#Compare Time to send email
-	if (lastValue == Current_Value):
-    
-	else:
-		difference = Current_Value - lastValue
+	if(lastValue!=Current_Value):
+		difference= Current_Value-lastValue
 		if(difference >4):
 			detect_send(channel)
 			lastValue = Current_Value
-		else:
-			
