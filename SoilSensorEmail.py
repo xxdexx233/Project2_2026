@@ -20,11 +20,11 @@ lastValue = startTime
 
 def detect_send(channel):
 	if GPIO.input(channel):
+		print("No Water Detected!")
+		send_need_water()
+	else:
 		print("Water Detected!")
 		send_dont_need_water()
-	else:
-		print("No water Detected!")
-		send_need_water()
 
 def send_need_water():
 	msg = EmailMessage()
@@ -53,6 +53,7 @@ def send_dont_need_water():
 	server.quit()
 
 while(True):
+	seconds = time.time()
 	result = time.localtime(seconds)
 	Current_Value = result.tm_hour
 	#print(str(Current_Value))
